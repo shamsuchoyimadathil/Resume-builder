@@ -6,5 +6,38 @@
 
 {% block content %}
     <h1>Resume builder</h1>
-    <p>{{a}}</p>
+
+    <div class="main-text">
+        <h2>what is a Resume ? </h2>
+        <p>Simply put, a resume is a one- to two-page document that sums up a job seeker's qualifications for the jobs they're interested in. 
+           More than just a formal job application, a resume is a marketing tool that job seekers use to communicate their value to employers</p>
+
+        <h1>A Good Resume Guide To Your Dream Interview </h1>
+    </div>
+   
+   <div>
+        <ul>
+            <li>
+                <a href="{% url 'resume-builder' %} "> 
+                    <img src="" alt="loading">
+                    <p>Standard</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'resume-builder' %} "> 
+                    <img src="" alt="loading">
+                    <p>Attractive</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'resume-builder' %} "> 
+                    <img src="" alt="loading">
+                    <p>standard</p>
+                </a>
+            </li>
+        </ul>
+   </div>
+
 {% endblock content %}

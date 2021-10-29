@@ -10,7 +10,7 @@ class Resume_model(models.Model):
     phone = PhoneNumberField(unique= True)
 
     skills = models.CharField(max_length=25) # need more than one
-    awards = models.CharField(max_length=250) # need more than one
+    awards = models.CharField(max_length=250,null=True) # need more than one
     languages = models.CharField( max_length=50) # need more than one
     interests = models.CharField(max_length=50) # need more than one
 
@@ -18,7 +18,7 @@ class Resume_model(models.Model):
     #more than one
     school_name = models.CharField(max_length=150)
     school_place = models.CharField(max_length=50)
-    degree = models.CharField(max_length=50)
+    qualification = models.CharField(max_length=50)
     school_in = models.DateField()
     school_out = models.DateField()
 
@@ -36,3 +36,5 @@ class Resume_model(models.Model):
     project_detail = models.TextField()
 
     
+    def __str__(self):
+        return self.name

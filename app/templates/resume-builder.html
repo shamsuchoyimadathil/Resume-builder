@@ -5,6 +5,18 @@
 {% block title %} Resume builder {% endblock title %}
 
 {% block content %}
-    <h1>working</h1>
+    <h1>make your resume</h1>
+
+    <div style="margin-left:50px">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <input type="submit">
+        </form>
+        
+    </div>
+
+
 
 {% endblock content %}
