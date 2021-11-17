@@ -7,12 +7,18 @@
 {% block content %}
     <h1>make your resume</h1>
 
-    <div style="margin-left:50px">
+    <div>
         <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
 
-            <input type="submit">
+            {% comment %} {{form.name}}
+            {{form.skill}}
+            <button>add new skill field</button>
+            {{form.award}}
+            <button>add new award field</button> {% endcomment %}
+
+            <input type="submit" class="btn btn-success">
         </form>
         
     </div>

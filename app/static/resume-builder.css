@@ -1,3 +1,59 @@
 body{
     font-family: 'Courier New', Courier, monospace;
+    background: url("wepik-20211016-9127.jpg");
+}
+
+h1{
+    text-align: center;
+    padding: 5vh;
+    color: #039979;
+}
+
+div{
+    margin-bottom: 5vh;
+    /* text-align: center; */
+    display: block;
+    text-align: center
+    
+}
+
+form{
+    display: inline-block;
+    border: 0.5px solid rgb(3, 74, 133);
+    box-shadow: 10px 5px 1px 1px rgb(143, 143, 143) ;
+    border-radius: 10px;
+    background: url("wepik-20211016-9127.jpg");
+    padding: 2rem;
+    padding-left: 10vw;
+    /* background: rgba(161, 161, 161, 0.712);
+     */
+    width: 80%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+
+input,textarea{
+    width: 80%;
+    display: block;
+    padding: 5px;
+}
+
+
+/* for mobile phones */
+
+@media only screen and (max-width: 768px) {
+
+    form{
+        width: 90%;
+    }
+
+    input,textarea{
+        width: 100%;
+        display: block;
+        padding: 5px;
+    }
+    
 }

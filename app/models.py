@@ -8,13 +8,14 @@ class Resume_model(models.Model):
     about_you_short = models.CharField( max_length=250)
     email = models.EmailField( max_length=254)
     phone = PhoneNumberField(unique= True)
+    # place = models.CharField(max_length=254)
 
     skills = models.CharField(max_length=25) # need more than one
     awards = models.CharField(max_length=250,null=True) # need more than one
     languages = models.CharField( max_length=50) # need more than one
     interests = models.CharField(max_length=50) # need more than one
 
-    #education
+    #education  
     #more than one
     school_name = models.CharField(max_length=150)
     school_place = models.CharField(max_length=50)

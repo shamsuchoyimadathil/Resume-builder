@@ -1,0 +1,127 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 2vw;
+
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style: none;
+}
+
+table,tr,td{
+    border: 1px solid black;
+    padding: 2vw;
+}
+
+table{
+    width: 80%;
+    
+}
+
+.tables{
+    position: relative;
+    bottom: 300px;
+    margin-top: 5rem;
+}
+
+.personal-head{
+    width: 50%;
+}
+.personal-head h1{
+    font-weight: bolder;
+    font-size: 5vw;
+}
+
+.personal-head p{
+    color: gray;
+    font-size: 13px;
+    margin: 0;
+}
+
+
+.skill,.award,.language,.intrests{
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 6rem;
+
+}
+
+.projects{
+    position: relative;
+    bottom: 12rem;
+    margin-top: 2rem;
+}
+
+h5{
+    font-weight: bolder;
+}
+
+.styles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.styles button{
+    width: 30%;
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 768px) {
+    body{
+        padding: 4vw;
+    }
+
+    table,tr,td{
+        padding: 1vw;
+        
+    }
+
+    .skill,.award,.language,.intrests{
+        align-self: flex-start;
+        top: 2rem;
+    }
+
+    .tables{
+        position: relative;
+        bottom: 0;
+    }
+
+    .projects{
+        bottom: 0;
+    }
+
+    .styles{
+        flex-direction: column;
+    }
+
+    .styles button{
+        margin-top: 1rem;
+        width: 50%;
+        align-self: center;
+    }
+
+    .personal-head h1{
+        font-weight: bolder;
+        font-size: 7vw;
+    }
+}
+
+
+
+@media only screen and (max-width: 450px){
+    body{
+        font-size: x-small;
+    }
+
+    h5{
+        font-size: small;
+        font-weight: bolder;
+    }
+}

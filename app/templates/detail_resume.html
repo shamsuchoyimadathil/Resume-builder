@@ -1,7 +1,145 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block css %} {% static 'detail_resume.css' %} {% endblock css %}
 
 {% block content %}
-    <p>{{object.name}}</p>
+{% comment %} jquery cdn {% endcomment %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <div class="personal-head">
+        <h1>{{object.name}}</h1>
+        <p>{{object.profession}}</p>
+        <p>{{object.about_you_short}} </p>
+        <p>{{object.email}}</p>
+        <p>{{object.phone}}</p>
+    </div>
+
+
+    <div class="contact-details">
+       
+       {% comment %} <p>{{object.place}}</p> {% endcomment %}
+    </div>
+    <hr>
+
+    {% comment %} <div> {% endcomment %}
+        <div class="skill">
+            <h5>skills</h5>
+            <ul>
+                <li>{{object.skills}}</li>
+            </ul>
+        </div>
+
+        <div class="award">
+            <h5>awards</h5>
+            <ul>
+                <li>{{object.awards}}</li>
+            </ul>
+        </div>
+
+        <div class="language">
+            <h5>languages</h5>
+            <ul>
+                <li>{{object.languages}}</li>
+            </ul>
+        </div>
+
+        <div class="intrests">
+            <h5>interests</h5>
+            <ul>
+                <li>{{object.interests}}</li>
+            </ul>
+        </div>
+        
+    {% comment %} </div> {% endcomment %}
+
+    <div class="tables">
+        <table>
+            <h5>Education</h5>
+            <tr>
+                <td>school name</td>
+                <td>school place</td>
+                <td>qualification</td>
+                <td>school in </td>
+                <td>school out</td>
+            </tr>
+
+            <tr>
+                <td>{{object.school_name}}</td>
+                <td>{{object.school_place}}</td>
+                <td>{{object.qualification}}</td>
+                <td>{{object.school_in}}</td>
+                <td>{{object.school_out}}</td>
+            </tr>
+        
+        </table>
+
+    </div>
+    
+
+    <div class="tables">
+        <table>
+            <h5>Experience</h5>
+            <tr>
+                <td>company name</td>
+                <td>company place</td>
+                <td>position</td>
+                <td>company in </td>
+                <td>company out</td>
+            </tr>
+
+            <tr>
+                <td>{{object.company_name}}</td>
+                <td>{{object.company_place}}</td>
+                <td>{{object.position}}</td>
+                <td>{{object.company_in}}</td>
+                <td>{{object.company_out}}</td>
+            </tr>
+        
+        </table>
+    </div>
+
+    <div class="projects">
+        <h5>Projects</h5>
+        <h3>{{object.project_name}}</h3>
+        <p>{{object.project_detail}}</p>
+    </div>
+
+
+    <div>
+        <h5>change styles</h5>
+        <div class="styles">
+             <button class="classic btn btn-outline-primary">classic</button>
+            <button class="standard btn btn-outline-success">standard</button>
+            <button class="vintage btn btn-outline-danger">vintage</button>
+        </div>
+       
+    </div>
+    
+
+    <a class='btn btn-success' href="{% url 'to-pdf' %}">download pdf</a>
+
+    <script>
+        console.log("working")
+
+        $(".classic").click(function(){
+            $("h5").css({'color': '#800000',})
+            $("table,tr,td").css({'border': '2px solid #1E90FF','background': 'none','color':'black' })
+            $("hr").css({'color': '#089aca', 'height':'5px'})
+        });
+
+        $(".standard").click(function(){
+            $("h5").css({'color': '#6B8E23',})
+            $("table,tr,td").css({'background': '#696969', 'color':'white','border': '2px solid white'})
+            $("hr").css({'color': '#6B8E23', 'height':'5px'})
+        });
+
+        $(".vintage").click(function(){
+            $("h5").css({'color': '#8B008B',})
+            $("table,tr,td").css({'border': '2px solid white','background': '#8B4513','color':'white' })
+            $("hr").css({'color': '#8B008B', 'height':'5px'})
+            
+        });
+
+    </script>
 {% endblock content %}
