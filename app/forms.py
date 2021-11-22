@@ -1,9 +1,8 @@
 from django import forms
-from django.db.models import fields
-from django.db.models.base import Model
+from django.forms.fields import CharField
 from .models import Resume_model
+from django.forms import modelformset_factory
 
-class Resume_form(forms.ModelForm):
-    class Meta:
-        model = Resume_model 
-        fields = "__all__"
+ResumeFormSet = modelformset_factory(
+    Resume_model, fields="__all__", extra=1
+)

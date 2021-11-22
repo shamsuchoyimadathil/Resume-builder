@@ -8,6 +8,14 @@ h1{
     padding: 5vh;
     color: #039979;
 }
+p{
+    text-align: left;
+    margin: 0em;
+}
+h3{
+    text-align: left;
+    margin-top: 1rem;
+}
 
 div{
     margin-bottom: 5vh;
@@ -36,11 +44,22 @@ form{
 
 
 input,textarea{
-    width: 80%;
+    width: 100%;
     display: block;
     padding: 5px;
 }
 
+.addbtn{
+    margin-top: 1rem;
+    margin-left:auto;
+    display:block;
+
+}
+
+.submit-btn{
+    width: 100%;
+    margin-top: 1rem;
+}
 
 /* for mobile phones */
 
@@ -55,5 +74,7 @@ input,textarea{
         display: block;
         padding: 5px;
     }
+
+    
     
 }

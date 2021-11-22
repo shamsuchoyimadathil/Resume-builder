@@ -6,7 +6,7 @@ from .utils import render_to_pdf
 
 
 
-from .forms import Resume_form
+from .forms import ResumeFormSet
 from .models import Resume_model 
 # Create your views here.
 
@@ -19,28 +19,20 @@ class Main_view(TemplateView):
     
     
 
-class Resume_builder(TemplateView):
-    template_name = "resume-builder.html"
-   
+def resume_builder(request):
+    context = {}
+    formset = ResumeFormSet(queryset=Resume_model.objects.none())
+    if request.method == "POST":
+        formset = ResumeFormSet(request.POST)
+        context["form"] = formset
+        if formset.is_valid():
+            formset.save()
+            return HttpResponseRedirect(reverse('detailresume',args=(formset.instance.id,)))
+        return render(request,"resume-builder.html",context)
+    context["form"] = formset
+    context["a"] = 238
 
-    def post(self,request,**kwargs):
-        context = self.get_context_data()
-
-        form = Resume_form()
-        if request.method == 'POST':
-            form = Resume_form(request.POST)
-            if form.is_valid():
-                form.save()
-                
-                return HttpResponseRedirect(reverse('detailresume',args=(form.instance.id,)))
-        return super(TemplateView,self).render_to_response(context)
-
-        
-    def get_context_data(self, **kwargs):
-        context = super(Resume_builder,self).get_context_data(**kwargs)
-        form = Resume_form(self.request.POST or None)
-        context["form"] = form
-        return context
+    return render(request,"resume-builder.html",context)
     
 class Resume_detail_view(DetailView):
     template_name = "detail_resume.html"
@@ -53,5 +45,10 @@ class Resume_detail_view(DetailView):
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('detail_resume.html')
+        
+        datas = {
+            
+        }
+
+        pdf = render_to_pdf('detail_resume.html',datas)
         return HttpResponse(pdf, content_type='application/pdf') 

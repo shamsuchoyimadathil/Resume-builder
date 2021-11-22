@@ -8,20 +8,105 @@
     <h1>make your resume</h1>
 
     <div>
-        <form action="" method="POST">
+        <form action="" method="POST" id="form-container">
             {% csrf_token %}
-            {{form.as_p}}
+            {% comment %} {{form.as_p}} {% endcomment %}
+        {% for form in form  %}
+            <p>name:</p>
+            {{form.name}}
+            <p>profession:</p>
+            {{form.profession}}
+            <p>about you :</p>
+            {{form.about_you_short}}
+            <p>email:</p>
+            {{form.email}}
+            <p>phone:</p>
+            {{form.phone}}
 
-            {% comment %} {{form.name}}
-            {{form.skill}}
-            <button>add new skill field</button>
-            {{form.award}}
-            <button>add new award field</button> {% endcomment %}
+  
+            
+            <p>skills:</p>
+            <div class="skill-form">
+                {{form.skills}}
+            <div>
+            <button class="btn btn-outline-dark addbtn" id="add-skill">+</button>
 
-            <input type="submit" class="btn btn-success">
+            <p>awards:</p>
+            {{form.awards}}
+            <button class="btn btn-outline-dark addbtn">+</button>  
+
+            <p>languages:</p>
+            {{form.languages}}
+            <button class="btn btn-outline-dark addbtn">+</button>  
+
+            <p>interests:</p>
+            {{form.interests}}
+            <button class="btn btn-outline-dark addbtn">+</button>  
+
+            <h3>education</h3>
+            <p>school name:</p>
+            {{form.school_name}}
+            <p>school place:</p>
+            {{form.school_place}}
+            <p>qualification:</p>
+            {{form.qualification}}
+            <p>school in:</p>
+            {{form.school_in}}
+            <p>school out:</p>
+            {{form.school_out}}
+            <button class="btn btn-outline-dark addbtn">+</button> 
+
+            <h3>experience </h3>
+            <p>company name:</p>
+            {{form.company_name}}
+            <p>company place:</p>
+            {{form.company_place}}
+            <p>position:</p>
+            {{form.position}}
+            <p>company in:</p>
+            {{form.company_in}}
+            <p>company out:</p>
+            {{form.company_out}}
+            <button class="btn btn-outline-dark addbtn">+</button> 
+
+            <h3>projects </h3>
+            <p>project name:</p>
+            {{form.project_name}}
+            <p>project detail:</p>
+            {{form.project_detail}}
+            <button class="btn btn-outline-dark addbtn">+</button> 
+        {% endfor %}
+             
+
+            <input type="submit" class="btn btn-success submit-btn">
         </form>
         
     </div>
+
+    <script>
+        let skillForm = document.querySelectorAll(".skill-form")
+        let container = document.querySelector("#form-container")
+        let addButton = document.querySelector("#add-skill")
+        let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+        let formNum = skillForm.length-1
+        addButton.addEventListener('click', addForm)
+
+        function addForm(e){
+            e.preventDefault()
+
+            let newForm = skillForm[0].cloneNode(true)
+            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+            let lastform  =skillForm[formNum]
+
+            formNum++
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            container.insertBefore(newForm, lastform.nextSibling);
+            
+            //totalForms.setAttribute('value', `${formNum+1}`)
+        }
+        console.log(container)
+    </script>
 
 
 
