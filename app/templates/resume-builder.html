@@ -10,8 +10,8 @@
     <div>
         <form action="" method="POST" id="form-container">
             {% csrf_token %}
-            {% comment %} {{form.as_p}} {% endcomment %}
-        {% for form in form  %}
+            {{ resume_formset.management_form }}
+        {% for form in resume_formset  %}
             <p>name:</p>
             {{form.name}}
             <p>profession:</p>
@@ -28,9 +28,9 @@
             <p>skills:</p>
             <div class="skill-form">
                 {{form.skills}}
-            <div>
+            </div>
             <button class="btn btn-outline-dark addbtn" id="add-skill">+</button>
-
+    
             <p>awards:</p>
             {{form.awards}}
             <button class="btn btn-outline-dark addbtn">+</button>  
@@ -83,7 +83,7 @@
         
     </div>
 
-    <script>
+     {% comment %} <script>
         let skillForm = document.querySelectorAll(".skill-form")
         let container = document.querySelector("#form-container")
         let addButton = document.querySelector("#add-skill")
@@ -95,6 +95,7 @@
         function addForm(e){
             e.preventDefault()
 
+            skillForm = document.querySelectorAll(".skill-form")
             let newForm = skillForm[0].cloneNode(true)
             let formRegex = RegExp(`form-(\\d){1}-`,'g')
             let lastform  =skillForm[formNum]
@@ -103,10 +104,10 @@
             newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
             container.insertBefore(newForm, lastform.nextSibling);
             
-            //totalForms.setAttribute('value', `${formNum+1}`)
+            totalForms.setAttribute('value', `${formNum+1}`)
         }
         console.log(container)
-    </script>
+    </script>   {% endcomment %}
 
 
 

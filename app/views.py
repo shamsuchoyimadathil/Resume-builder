@@ -3,7 +3,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView,DetailView,View
 from django.urls import reverse
 from .utils import render_to_pdf
-
+from django.template.loader import get_template
 
 
 from .forms import ResumeFormSet
@@ -19,21 +19,46 @@ class Main_view(TemplateView):
     
     
 
-def resume_builder(request):
-    context = {}
-    formset = ResumeFormSet(queryset=Resume_model.objects.none())
-    if request.method == "POST":
-        formset = ResumeFormSet(request.POST)
-        context["form"] = formset
-        if formset.is_valid():
-            formset.save()
-            return HttpResponseRedirect(reverse('detailresume',args=(formset.instance.id,)))
-        return render(request,"resume-builder.html",context)
-    context["form"] = formset
-    context["a"] = 238
+# def resume_builder(request):
+#     context = {}
+#     formset = ResumeFormSet(queryset=Resume_model.objects.none())
+#     if request.method == "POST":
+#         formset = ResumeFormSet(data=request.POST,queryset=Resume_model.objects.none())
+#         context["form"] = formset
 
-    return render(request,"resume-builder.html",context)
+#         if formset.is_valid():
+#             print("valid")
+#             formset.save(commit=False)
+#             return HttpResponseRedirect(reverse('detailresume',args=(formset.instance.id,)))
+#         print(formset.non_form_errors())
+#         print(formset.errors)
+       
+#     context["form"] = formset
+#     return render(request,"resume-builder.html",context)
     
+    
+class Resume_builder(TemplateView):
+    template_name = "resume-builder.html"
+
+    def get(self, *args, **kwargs):
+        formset = ResumeFormSet(queryset=Resume_model.objects.none())
+        return self.render_to_response({'resume_formset': formset})
+
+    def post(self,request, *args, **kwargs):
+        context = self.get_context_data()
+        formset = ResumeFormSet(request.POST)
+
+        if formset.is_valid():
+            print("valid")
+            formset = formset.save()
+            form_id = formset[0].pk
+            return HttpResponseRedirect(reverse('detailresume',args=([form_id])))
+            
+        formset = ResumeFormSet(queryset=Resume_model.objects.none())
+        print(formset.errors)
+        return super(TemplateView,self).render_to_response(context)
+
+
 class Resume_detail_view(DetailView):
     template_name = "detail_resume.html"
 
@@ -45,9 +70,10 @@ class Resume_detail_view(DetailView):
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
-        
+        id_ = self.kwargs.get('id')
+        obj = Resume_model.objects.get(id=id_)
         datas = {
-            
+            "object":obj
         }
 
         pdf = render_to_pdf('detail_resume.html',datas)

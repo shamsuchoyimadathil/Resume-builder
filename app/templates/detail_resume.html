@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% comment %} {% block css %} {% static 'detail_resume.css' %} {% endblock css %} {% endcomment %}
+{% block css %} {% static 'detail_resume.css' %} {% endblock css %}
 
 {% block content %}
 {% comment %} jquery cdn {% endcomment %}
@@ -118,7 +118,7 @@
     
 
     <a class='btn btn-success' href="{% url 'to-pdf' %}">download pdf</a>
-
+    {% comment %} <a class='btn btn-success' href="{% url 'down-pdf' %}">download pdf</a> {% endcomment %}
     <script>
         console.log("working")
 
